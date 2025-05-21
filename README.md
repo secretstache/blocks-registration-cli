@@ -1,0 +1,1 @@
+# blocks-registration-cli
