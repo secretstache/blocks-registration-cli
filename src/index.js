@@ -1,3 +1,4 @@
+import path from 'path';
 import { promptForBlockDetails, askToContinue } from './cli/prompt.js';
 import { generateBlockFiles } from './utils/file.js';
 
@@ -22,13 +23,13 @@ export async function run() {
       
       console.log('\nFiles created:');
       blockFiles.forEach(file => {
-        console.log(`- ${file}`);
+        console.log(`- ${path.relative(process.cwd(), file)}`);
       });
       
       if (childBlockFiles && childBlockFiles.length > 0) {
         console.log(`\nChild block "${childBlockName}" files:`);
         childBlockFiles.forEach(file => {
-          console.log(`- ${file}`);
+          console.log(`- ${path.relative(process.cwd(), file)}`);
         });
       }
       

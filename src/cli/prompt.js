@@ -1,5 +1,7 @@
 import inquirer from 'inquirer';
-import { config, toTitleCase } from '../config/defaults.js';
+import fs from 'fs/promises';
+import path from 'path';
+import { config, toTitleCase, getBlockJsPath } from '../config/defaults.js';
 
 export async function promptForBlockDetails() {
   const answers = await inquirer.prompt([
@@ -7,10 +9,19 @@ export async function promptForBlockDetails() {
       type: 'input',
       name: 'blockName',
       message: 'Block name (e.g., team-members):',
-      validate: input => {
+      validate: async (input) => {
         if (!input) return 'Block name is required';
-        if (!/^[a-z0-9-]+$/.test(input)) return 'Block name must be in kebab-case (lowercase with hyphens)';
-        return true;
+        if (!/^[a-z0-9-]+$/.test(input)) {
+          return 'Block name must be in kebab-case (lowercase with hyphens)';
+        }
+        
+        const blockPath = getBlockJsPath(input);
+        try {
+          await fs.access(blockPath);
+          return `Block "${input}" already exists at ${path.relative(process.cwd(), blockPath)}`;
+        } catch {
+          return true;
+        }
       }
     },
     {
