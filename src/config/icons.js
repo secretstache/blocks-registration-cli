@@ -1,0 +1,20 @@
+export const blockIcons = {
+  'accordion': 'columns',
+  'block-grid': 'grid-view',
+  'blog-category-list': 'category',
+  'blog-feed': 'columns',
+  'button-grid': 'button',
+  'call-to-action': 'external',
+  'content-feed': 'admin-post',
+  'content-slider': 'slides',
+  'full-width-media': 'format-image',
+  'icon': 'format-image',
+  'icon-list': 'editor-ul',
+  'logo-wall': 'images-alt',
+  'section-wrapper': 'align-full-width',
+  'social-buttons': 'share',
+  'split-content': 'columns',
+  'tabs': 'table-col-after',
+  'team-members': 'businessman',
+  'testimonials': 'slides'
+}; 
